@@ -67,6 +67,8 @@ export function SlideOver({ isOpen, onClose, title, children }: SlideOverProps) 
 }
 
 export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message, variant = 'primary' }: { isOpen: boolean; onClose: () => void; onConfirm: () => void; title: string; message: React.ReactNode; variant?: 'primary' | 'destructive' | 'warning' }) => {
+    const buttonVariant = variant === 'primary' || variant === 'warning' ? 'default' : variant;
+
     return (
         <Modal
             isOpen={isOpen}
@@ -75,7 +77,7 @@ export const ConfirmationModal = ({ isOpen, onClose, onConfirm, title, message, 
             footer={
                 <>
                     <Button variant="outline" onClick={onClose}>Annuler</Button>
-                    <Button variant={variant === 'warning' ? 'default' : variant} className={variant === 'warning' ? 'bg-orange-500 hover:bg-orange-600' : ''} onClick={() => { onConfirm(); onClose(); }}>
+                    <Button variant={buttonVariant} className={variant === 'warning' ? 'bg-orange-500 hover:bg-orange-600' : ''} onClick={() => { onConfirm(); onClose(); }}>
                         Confirmer
                     </Button>
                 </>
